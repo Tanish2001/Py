@@ -4,12 +4,15 @@ import chatterbot
 from chatterbot.trainers import ListTrainer
 from chatterbot.trainers import ChatterBotCorpusTrainer
 from tkinter import*
+from PIL import ImageTk, Image
+
 
 my_bot = ChatBot('my_bot')
 my_bot.storage.drop()
 corpus_trainer = ChatterBotCorpusTrainer(my_bot)
 corpus_trainer.train('chatterbot.corpus.english')
 my_bot = ChatBot(name='TanBan',read_only = True, logic_adapters = ['chatterbot.logic.BestMatch'])
+
 '''
 print("Talk to Bot")
 while True:
@@ -27,8 +30,8 @@ main.geometry("500x650")
 
 main.title("ChatBot")
 
-img = PhotoImage(file="HEAT.png")
-
+#img = PhotoImage(file="HEAT.jpg")
+img = ImageTk.PhotoImage(Image.open("HEAT.jpg"))  # PIL solution
 photoL= Label(main,image=img)
 
 photoL.pack(pady=5)
@@ -64,5 +67,5 @@ def enter_function(event):
 
 main.bind('<Return>', enter_function)
 
-
 main.mainloop()
+
